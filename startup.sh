@@ -2,7 +2,6 @@ CREDENTIALS_FILE=/root/scripts/itop-utilities/.credentials
 DUMP_FILE=/var/tmp/inventory-sqldump.sql
 
 
-# PreWork
 EnsureDBisRunning( )
 {
 RESULT=1
@@ -19,11 +18,16 @@ done
 
 
 }
+
+# Start Mysql, recover last state, generate credentials file...
 PreWork( )
 {
   echo "Iniciando $0"
-  EnsureDBisRunning 
+  GenerateItopConnectInfo
+  LoadPreviousExecution
+  EnsureDBisRunning
 }
+
 
 GenerateItopConnectInfo( )
 {
@@ -55,9 +59,6 @@ LoadPreviousExecution( )
 
 PreWork
 
-GenerateItopConnectInfo
-
-LoadPreviousExecution
 
 
 #source  /root/scripts/openstack-utilities/profiles/${profile}
