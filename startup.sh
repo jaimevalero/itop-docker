@@ -3,13 +3,25 @@ DUMP_FILE=/var/tmp/inventory-sqldump.sql
 
 
 # PreWork
+EnsureDBisRunning( )
+{
+RESULT=1
+while [ result -eq 1 ]
+do
+  /etc/init.d/mysqld stop
+  rm -f /var/lock/subsys/mysqld 1>/dev/null 2>/dev/null
+  /etc/init.d/mysqld start
+  mysql -e "show databases"
+  RESULT=$?
+  /etc/init.d/mysqld status
+done
+
+
+}
 PreWork( )
 {
   echo "Iniciando $0"
-  /etc/init.d/mysqld stop
-  rm -f /var/lock/subsys/mysqld 1>/dev/null 2>/dev/null
-  /etc/init.d/mysqld start 
-  /etc/init.d/mysqld status
+  EnsureDBisRunning 
 }
 
 GenerateItopConnectInfo( )
