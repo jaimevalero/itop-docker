@@ -11,7 +11,8 @@ do
   /etc/init.d/mysqld stop
   rm -f /var/lock/subsys/mysqld 1>/dev/null 2>/dev/null
   /etc/init.d/mysqld start
-  mysql -e "show databases"
+  mysql -e " create database if not exists inventory "
+  mysql -e " show databases "
   RESULT=$?
   /etc/init.d/mysqld status
 done
@@ -46,7 +47,6 @@ LoadPreviousExecution( )
   if [ -f $DUMP_FILE ]
   then
     echo "Previous execution detected. Loading"
-    mysql -e " create database if not exists inventory"
     mysql inventory < $DUMP_FILE 
   fi 
 
