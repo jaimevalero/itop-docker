@@ -2,7 +2,7 @@
 /etc/init.d/mysqld restart 
 
 CREDENTIALS_FILE=/root/scripts/itop-utilities/.credentials
-
+DUMP_FILE=/var/tmp/inventory/inventory-sqldump.sql
 
 GenerateItopConnectInfo( )
 {
@@ -20,8 +20,21 @@ GenerateItopConnectInfo( )
 
 }
 
+LoadPreviousExecution( )
+{
+ 
+  if [ -f $DUMP_FILE ]
+  then
+    echo "Previous execution detected. Loading"
+    mysql -e " create database if not exists inventory"
+    mysql inventory < $DUMP_FILE 
+  if
+}
 
 GenerateItopConnectInfo
+
+LoadPreviousExecution
+
 
 #source  /root/scripts/openstack-utilities/profiles/${profile}
 
@@ -36,6 +49,6 @@ GenerateItopConnectInfo
 
 # Dump results
 /root/scripts/itop-docker/FromItop2LDAP.sh
-mysqldump inventory   
+mysqldump inventory > /var/tmp/inventory/inventory-sqldump.sql
 
 
