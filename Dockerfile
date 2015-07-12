@@ -20,17 +20,22 @@ RUN cd /root/scripts && \
 
 # Permissions and entrypoint
 CMD ["/bin/bash", "/root/scripts/itop-docker/startup.sh"]
-#RUN chmod +x /root/scripts/itop-docker/csv_import.php \
-#         /root/scripts/itop-docker/ldif-to-csv.sh \
-#         /root/scripts/itop-docker/AddDateCsv.sh \
-#         /root/scripts/itop-docker/skeleton.sh 
+
+# Start scripts
+ADD startup.sh     /root/scripts/itop-utilities/startup.sh
+ADD csv_import.php /root/scripts/itop-docker/csv_import.php
+ADD ldif-to-csv.sh /root/scripts/itop-docker/ldif-to-csv.sh
+ADD AddDateCsv.sh  /root/scripts/itop-docker/AddDateCsv.sh
+ADD skeleton.sh    /root/scripts/itop-docker/skeleton.sh
+RUN chmod +x /root/scripts/itop-utilities/startup.sh
+         /root/scripts/itop-docker/csv_import.php \
+         /root/scripts/itop-docker/ldif-to-csv.sh \
+         /root/scripts/itop-docker/AddDateCsv.sh \
+         /root/scripts/itop-docker/skeleton.sh 
+
 RUN touch /root/scripts/itop-utilities/.credentials && \
     ln -s /root/scripts/itop-utilities/.credentials /root/scripts/itop-docker/.credentials
 
 EXPOSE 3306
 VOLUME ["/var/tmp/" ]
-
-
-# Start scripts
-ADD ./startup.sh /root/scripts/itop-utilities/startup.sh
 
