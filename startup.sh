@@ -11,8 +11,8 @@ do
   /etc/init.d/mysqld stop
   rm -f /var/lock/subsys/mysqld 1>/dev/null 2>/dev/null
   /etc/init.d/mysqld start
-  mysql -e " create database if not exists inventory "
-  mysql -e " show databases "
+  mysql -N -e " create database if not exists inventory "
+  mysql -N -e "SELECT 'Testing mysql OK' "
   RESULT=$?
   /etc/init.d/mysqld status
 done
@@ -33,6 +33,9 @@ PreWork( )
 
 GenerateItopConnectInfo( )
 {
+# Avoid to upload produciton info to combodo's demo site
+[ ` cat $CREDENTIALS_FILE | grep demo | wc -l ` -eq 1 ] > $CREDENTIALS_FILE
+# itop server credentials
 
 [ ! -z ${itop_user}      ] && echo "export MY_USER=${itop_user}"                     >> $CREDENTIALS_FILE
 [ ! -z ${itop_pass}      ] && echo "export MY_PASS=${itop_pass}"                     >> $CREDENTIALS_FILE 
@@ -40,13 +43,19 @@ GenerateItopConnectInfo( )
 [ ! -z ${itop_directory} ] && echo "export INSTALLATION_DIRECTORY=${itop_directory}" >> $CREDENTIALS_FILE
 [ ! -z ${https}          ] && echo "export HTTPS=Y" >> $CREDENTIALS_FILE || echo "HTTPS=N"  >> $CREDENTIALS_FILE
 
+# ldap options
 [ ! -z ${ldap_server}    ] && echo "export LDAP_SERVER=\"${ldap_server}\""           >> $CREDENTIALS_FILE
 [ ! -z ${ldap_base}      ] && echo "export LDAP_BASE=\"${ldap_base}\""               >> $CREDENTIALS_FILE
 [ ! -z ${ldap_bind_dn}   ] && echo "export LDAP_BIND_DN=\"${ldap_bind_dn}\""         >> $CREDENTIALS_FILE
 [ ! -z ${ldap_pass}      ] && echo "export LDAP_PASSWORD=\"${ldap_pass}\""           >> $CREDENTIALS_FILE
 
+# misc option
+[ ! -z ${organization}   ] && echo "export MY_ITOP_ORGANIZATION=\"${organization}\"" >> $CREDENTIALS_FILE
+[ `echo ${create_organization} | grep -i y | wc -l `-eq 1 ] CREATE_FLAG=1 || CREATE_FLAG=0 ;  
+echo "export MY_ITOP_CREATE_ORGANIZATION=$CREATE_FLAG"  >> $CREDENTIALS_FILE 
+
 MostrarLog Connection Info: 
-cat  $CREDENTIALS_FILE
+cat  $CREDENTIALS_FILE | sed -e 's/MY_ITOP_//g' 
 }
 
 LoadPreviousExecution( )
@@ -61,25 +70,14 @@ LoadPreviousExecution( )
 
 }
 
+# Main
 PreWork
-
-
-
-#source  /root/scripts/openstack-utilities/profiles/${profile}
-
-#mysql  -e  " GRANT ALL ON *.* TO 'root'@'localhost' IDENTIFIED BY '6yhnmju7' "
-
-#mysql -u${MYSQL_USER} -p${MYSQL_PASS} -h${MYSQL_HOSTNAME} -e " show databases"
-#RESUL=$?
-#[ $RESUL -ne 0 ] && echo " Incorrectas credenciales" && exit 1
-#
-# Work
-#/root/scripts/openstack-utilities/OpenStack2Mysql.sh  /root/scripts/openstack-utilities/profiles/${profile}
 
 cd /root/scripts/itop-docker; ./FromItop2LDAP.sh
 
 # Dump results
 mysqldump inventory > $DUMP_FILE
+ls -altr  $DUMP_FILE
 
 MostrarLog "End $0"
 
