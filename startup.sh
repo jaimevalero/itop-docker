@@ -34,7 +34,9 @@ LoadPreviousExecution( )
     echo "Previous execution detected. Loading"
     mysql -e " create database if not exists inventory"
     mysql inventory < $DUMP_FILE 
-  fi
+  fi 
+
+
 }
 
 PreWork
