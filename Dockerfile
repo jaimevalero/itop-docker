@@ -18,7 +18,12 @@ RUN cd /root/scripts && \
     git clone "https://github.com/jaimevalero78/itop-utilities" && \
     git clone "https://github.com/jaimevalero78/itop-docker"
 
+# Permissions and entrypoint
 CMD ["/bin/bash", "/root/scripts/itop-docker/startup.sh"]
+chmod +x /root/scripts/itop-docker/csv_import.php \
+         /root/scripts/itop-docker/ldif-to-csv.sh \
+         /root/scripts/itop-docker/AddDateCsv.sh \
+         /root/scripts/itop-docker/skeleton.sh
 
 EXPOSE 3306
 VOLUME ["/var/tmp/" ]
