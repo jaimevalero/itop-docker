@@ -3,6 +3,7 @@
 
 WORKING_PATH=${MY_WORKING_PATH-.}
 FICHERO_TRAZA=/var/log/`basename $0`.log
+OUTPUT_DIRECTORY=/var/tmp
 
 # TODO
 # Add index
@@ -25,30 +26,30 @@ CheckTable( )
 {
   MostrarLog $1
   MY_TABLA=$1
-    echo " mysql -e ' SELECT COUNT(1) AS QUITARQUITAR from $DB.$MY_TABLA  '  " > kkinsertarsnap
+    echo " mysql $DB -e ' SELECT COUNT(1) AS QUITARQUITAR from $MY_TABLA  '  " > kkinsertarsnap
     chmod +x kkinsertarsnap
     SALIDA=` ./kkinsertarsnap | grep -v QUITAR | awk '{ print $1 }' `
     rm  -f ./kkinsertarsnap 2>/dev/null
   # TODO check wether a table exists
-    MostrarLog Resultados: Insert contra la tabla $DB.$MY_TABLA, $SALIDA
+    MostrarLog Resuls: Insert in the table $DB.$MY_TABLA, $SALIDA
 
 }
 
 # Drop table
 DropTable( )
 {
-  MostrarLog $1
+    MostrarLog $1
     MY_TABLA=$1
-    MostrarLog Borrando Tabla $MY_TABLA
+    MostrarLog Deleting table $MY_TABLA
     mysql -e " drop table IF EXISTS  $DB.$MY_TABLA" 2>/dev/null 1>/dev/null
 
 }
 
 InsertTable( )
 {
-  MostrarLog $1
-  MY_TABLA=$1 
-
+    MostrarLog $1
+    MY_TABLA=$1 
+    mysql -e " create database if not exists $DB"
     DropTable $MY_TABLA
     php /root/scripts/itop-docker/csv_import.php $MY_TABLA $MY_TABLA $DB 2>/dev/null 1>/dev/null
     CheckTable $MY_TABLA
@@ -71,7 +72,7 @@ CheckFile( )
 
 Fin( )
 {
-MostrarLog FIN 
+MostrarLog End 
 
 }
 PreLoadDB( )
@@ -81,7 +82,7 @@ notin=0
 
 LoadingDB( )
 {
-MostrarLog Cargando ${CSV_LIST[*]}
+MostrarLog Loading ${CSV_LIST[*]}
 
 for i in `echo ${CSV_LIST[*]}`
 do
@@ -118,7 +119,7 @@ notin=0
 # Check csv are not empty
 PostGetData( )
 {
-MostrarLog Cargando ${CSV_LIST[*]}
+MostrarLog Loading ${CSV_LIST[*]}
 
 for i in `echo ${CSV_LIST[*]}`
 do
@@ -138,7 +139,7 @@ for i in `echo ${CSV_LIST[*]}`
 do
   echo ${CSV_HEADER[$index]} > $i
   index=`expr $index + 1` 
-  MostrarLog Cabecera de $i $CSV_HEADER[$index]
+  MostrarLog Header of $i $CSV_HEADER[$index]
 done
 
 }
@@ -147,8 +148,8 @@ done
 PreWork( )
 {
 
-MostrarLog INICIO:
-MostrarLog Lista CSVs :${CSV_LIST[*]}
+MostrarLog START:
+MostrarLog CSV list :${CSV_LIST[*]}
 
 cd $WORKING_PATH 2>/dev/null
 

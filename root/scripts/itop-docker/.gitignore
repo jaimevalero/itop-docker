@@ -1,0 +1,7 @@
+
+.credentials
+*.csv
+salida*
+users*
+*ldif
+
