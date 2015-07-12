@@ -32,16 +32,16 @@ PreWork( )
 GenerateItopConnectInfo( )
 {
 
-[ ! -z $itop-user      ] && echo "MY_USER=$itop-user"                     >> $CREDENTIALS_FILE
-[ ! -z $itop-pass      ] && echo "MY_PASS=$itop-pass"                     >> $CREDENTIALS_FILE 
-[ ! -z $itop-server    ] && echo "ITOP_SERVER=$itop-server"               >> $CREDENTIALS_FILE
-[ ! -z $itop-directory ] && echo "INSTALLATION_DIRECTORY=$itop-directory" >> $CREDENTIALS_FILE
-[ ! -z $https          ] && echo "HTTPS=Y" >> $CREDENTIALS_FILE || echo "HTTPS=N"  >> $CREDENTIALS_FILE
+[ ! -z $itop-user      ] && echo "export MY_USER=$itop-user"                     >> $CREDENTIALS_FILE
+[ ! -z $itop-pass      ] && echo "export MY_PASS=$itop-pass"                     >> $CREDENTIALS_FILE 
+[ ! -z $itop-server    ] && echo "export ITOP_SERVER=$itop-server"               >> $CREDENTIALS_FILE
+[ ! -z $itop-directory ] && echo "export INSTALLATION_DIRECTORY=$itop-directory" >> $CREDENTIALS_FILE
+[ ! -z $https          ] && echo "export HTTPS=Y" >> $CREDENTIALS_FILE || echo "HTTPS=N"  >> $CREDENTIALS_FILE
 
-[ ! -z $ldap-server    ] && echo "LDAP_SERVER=\"$ldap-server\""           >> $CREDENTIALS_FILE
-[ ! -z $ldap-base      ] && echo "LDAP_BASE=\"$ldap-base\""               >> $CREDENTIALS_FILE
-[ ! -z $ldap-bind-dn   ] && echo "LDAP_BIND_DN=\"$ldap-bind-dn\""         >> $CREDENTIALS_FILE
-[ ! -z $ldap-pass      ] && echo "LDAP_PASSWORD=\"$ldap-pass\""           >> $CREDENTIALS_FILE
+[ ! -z $ldap-server    ] && echo "export LDAP_SERVER=\"$ldap-server\""           >> $CREDENTIALS_FILE
+[ ! -z $ldap-base      ] && echo "export LDAP_BASE=\"$ldap-base\""               >> $CREDENTIALS_FILE
+[ ! -z $ldap-bind-dn   ] && echo "export LDAP_BIND_DN=\"$ldap-bind-dn\""         >> $CREDENTIALS_FILE
+[ ! -z $ldap-pass      ] && echo "export LDAP_PASSWORD=\"$ldap-pass\""           >> $CREDENTIALS_FILE
 
 }
 
