@@ -12,7 +12,7 @@ RUN /etc/init.d/mysqld start
 #ADD ./root/scripts/itop-docker/csv_import.php /root/scripts/itop-docker/csv_import.php
 
 # Get git repos
-RUN mkdir /root/scripts/
+RUN mkdir /root/scripts/ 
 RUN yum install -y git
 RUN cd /root/scripts && \
     git clone "https://github.com/jaimevalero78/itop-utilities" && \
