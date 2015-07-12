@@ -18,7 +18,7 @@ RUN cd /root/scripts && \
     git clone "https://github.com/jaimevalero78/itop-utilities" && \
     git clone "https://github.com/jaimevalero78/itop-docker"
 
-CMD ["/bin/bash", "/root/scripts/openstack-utilities/startup.sh"]
+CMD ["/bin/bash", "/root/scripts/itop-utilities/startup.sh"]
 
 EXPOSE 3306
 VOLUME ["/var/tmp/" ]
