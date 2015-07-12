@@ -12,6 +12,12 @@ GenerateItopConnectInfo( )
 [ ! -z $itop-server    ] && echo "ITOP_SERVER=$itop-server"               >> $CREDENTIALS_FILE
 [ ! -z $itop-directory ] && echo "INSTALLATION_DIRECTORY=$itop-directory" >> $CREDENTIALS_FILE
 [ ! -z $https          ] && echo "HTTPS=Y" >> $CREDENTIALS_FILE || echo "HTTPS=N"  >> $CREDENTIALS_FILE
+
+[ ! -z $ldap-server    ] && echo "LDAP_SERVER=\"$ldap-server\""           >> $CREDENTIALS_FILE
+[ ! -z $ldap-base      ] && echo "LDAP_BASE=\"$ldap-base\""               >> $CREDENTIALS_FILE
+[ ! -z $ldap-bind-dn   ] && echo "LDAP_BIND_DN=\"$ldap-bind-dn\""         >> $CREDENTIALS_FILE
+[ ! -z $ldap-pass      ] && echo "LDAP_PASSWORD=\"$ldap-pass\""           >> $CREDENTIALS_FILE
+
 }
 
 
@@ -29,7 +35,7 @@ GenerateItopConnectInfo
 #/root/scripts/openstack-utilities/OpenStack2Mysql.sh  /root/scripts/openstack-utilities/profiles/${profile}
 
 # Dump results
-source  /root/scripts/openstack-utilities/profiles/${profile} 
-mysqldump  -u${MYSQL_USER} -p${MYSQL_PASS} -h${MYSQL_HOSTNAME} $MYSQL_DATABASE  
+/root/scripts/itop-docker/FromItop2LDAP.sh
+mysqldump inventory   
 
 
