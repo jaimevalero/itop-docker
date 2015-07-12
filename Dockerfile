@@ -3,13 +3,6 @@ FROM       appcontainers/centos66
 MAINTAINER Jaime Valero <jaimevalero78@yahoo.es>
 LABEL      Description="Synchronize user data from LDAP to Itop" Version="0.2.0"
 
-# Get git repos
-RUN mkdir /root/scripts
-RUN yum install -y git 
-RUN cd /root/scripts && \  
-    git clone "https://github.com/jaimevalero78/itop-utilities" && \
-    git clone "https://github.com/jaimevalero78/itop-docker"
-
 # Install dependencies for repo
 RUN yum install    -y mysql-server nc php php-common php-pdo php-cli php-mysql
 RUN /etc/init.d/mysqld start 
@@ -18,6 +11,12 @@ RUN /etc/init.d/mysqld start
 #ADD ./root/scripts/itop-docker/skeleton.sh /root/scripts/itop-docker/skeleton.sh
 #ADD ./root/scripts/itop-docker/csv_import.php /root/scripts/itop-docker/csv_import.php
 
+# Get git repos
+RUN mkdir /root/scripts
+RUN yum install -y git
+RUN cd /root/scripts && \
+    git clone "https://github.com/jaimevalero78/itop-utilities" && \
+    git clone "https://github.com/jaimevalero78/itop-docker"
 
 CMD ["/bin/bash", "/root/scripts/openstack-utilities/startup.sh"]
 
