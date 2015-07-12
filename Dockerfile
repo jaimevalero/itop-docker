@@ -1,7 +1,7 @@
 # Test
 FROM       appcontainers/centos66
 MAINTAINER Jaime Valero <jaimevalero78@yahoo.es>
-LABEL      Description="Synchronize user data from LDAP to Itop" Version="0.2.0"
+LABEL      Description="Synchronize user data from LDAP to Itop" Version="0.3.0"
 
 # Install dependencies for repo
 RUN yum install    -y mysql-server nc php php-common php-pdo php-cli php-mysql
