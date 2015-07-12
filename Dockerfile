@@ -4,7 +4,7 @@ MAINTAINER Jaime Valero <jaimevalero78@yahoo.es>
 LABEL      Description="Synchronize user data from LDAP to Itop" Version="0.3.0"
 
 # Install dependencies for repo
-RUN yum install    -y mysql-server nc php php-common php-pdo php-cli php-mysql
+RUN yum install    -y mysql-server nc openldap-clients php php-common php-pdo php-cli php-mysql
 RUN /etc/init.d/mysqld start 
 
 # Get git repos
