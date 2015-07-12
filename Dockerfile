@@ -7,7 +7,7 @@ LABEL Description="Synchronize user data from LDAP to Itop" Version="0.1.0"
 RUN mkdir /root/scripts
 RUN yum install -y git 
 RUN cd /root/scripts && \  
-    git clone "https://github.com/jaimevalero78/itop-utilities" \
+    git clone "https://github.com/jaimevalero78/itop-utilities" && \
     git clone "https://github.com/jaimevalero78/itop-docker"
 
 # Install dependencies for repo
