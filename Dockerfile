@@ -16,7 +16,7 @@ RUN mkdir /root/scripts/
 RUN yum install -y git
 RUN cd /root/scripts && \
     git clone "https://github.com/jaimevalero78/itop-utilities" && \
-    git clone "https://github.com/jaimevalero78/itop-docker"
+    git clone "https://github.com/jaimevalero78/itop-docker"   
 
 # Permissions and entrypoint
 CMD ["/bin/bash", "/root/scripts/itop-docker/startup.sh"]
