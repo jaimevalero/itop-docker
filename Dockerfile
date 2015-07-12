@@ -12,6 +12,11 @@ RUN cd /root/scripts && git clone "https://github.com/jaimevalero78/itop-utiliti
 RUN yum install    -y mysql-server nc php php-common php-pdo php-cli php-mysql
 RUN /etc/init.d/mysqld start 
 
+# Add utilities scrips
+ADD ./root/scripts/itop-docker/skeleton.sh /root/scripts/itop-docker/skeleton.sh
+ADD ./root/scripts/itop-docker/csv_import.php /root/scripts/itop-docker/csv_import.php
+
+
 CMD ["/bin/bash", "/root/scripts/openstack-utilities/startup.sh"]
 
 EXPOSE 3306
