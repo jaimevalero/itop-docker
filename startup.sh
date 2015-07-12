@@ -1,8 +1,13 @@
-# PreWork
-/etc/init.d/mysqld restart 
-
 CREDENTIALS_FILE=/root/scripts/itop-utilities/.credentials
 DUMP_FILE=/var/tmp/inventory/inventory-sqldump.sql
+
+
+# PreWork
+PreWork( )
+{
+  /etc/init.d/mysqld restart 
+  /etc/init.d/mysqld status
+}
 
 GenerateItopConnectInfo( )
 {
