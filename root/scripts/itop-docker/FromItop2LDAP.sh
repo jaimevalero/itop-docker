@@ -32,7 +32,6 @@ GettingData( )
     -h "${LDAP_SERVER}"  \
     -b "${LDAP_BASE}" \
     $LDAP_FIELDS | tr ',' ' '  > output.ldif 
-cp -f output.ldif 2output.ldif
 }
 
 PostGetData( )
