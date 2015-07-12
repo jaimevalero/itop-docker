@@ -1,6 +1,7 @@
 CREDENTIALS_FILE=/root/scripts/itop-utilities/.credentials
 DUMP_FILE=/var/tmp/inventory-sqldump.sql
 
+source /root/scripts/itop-docker/skeleton.sh
 
 EnsureDBisRunning( )
 {
@@ -15,6 +16,7 @@ do
   RESULT=$?
   /etc/init.d/mysqld status
 done
+MostrarLog "DB is running"
 
 
 }
@@ -22,7 +24,7 @@ done
 # Start Mysql, recover last state, generate credentials file...
 PreWork( )
 {
-  echo "Iniciando $0"
+  MostrarLog "Start $0"
   GenerateItopConnectInfo
   LoadPreviousExecution
   EnsureDBisRunning
@@ -43,6 +45,7 @@ GenerateItopConnectInfo( )
 [ ! -z $ldap-bind-dn   ] && echo "export LDAP_BIND_DN=\"$ldap-bind-dn\""         >> $CREDENTIALS_FILE
 [ ! -z $ldap-pass      ] && echo "export LDAP_PASSWORD=\"$ldap-pass\""           >> $CREDENTIALS_FILE
 
+MostrarLog Connection Info: `cat  $CREDENTIALS_FILE`
 }
 
 LoadPreviousExecution( )
@@ -50,7 +53,7 @@ LoadPreviousExecution( )
  
   if [ -f $DUMP_FILE ]
   then
-    echo "Previous execution detected. Loading"
+    MostrarLog "Previous execution detected. Loading"
     mysql inventory < $DUMP_FILE 
   fi 
 
@@ -77,4 +80,5 @@ cd /root/scripts/itop-docker; ./FromItop2LDAP.sh
 # Dump results
 mysqldump inventory > $DUMP_FILE
 
+MostrarLog "End $0"
 
