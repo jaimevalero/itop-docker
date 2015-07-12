@@ -28,7 +28,7 @@ ADD ./root/scripts/itop-docker/ldif-to-csv.sh /root/scripts/itop-docker/ldif-to-
 ADD ./root/scripts/itop-docker/AddDateCsv.sh  /root/scripts/itop-docker/AddDateCsv.sh
 ADD ./root/scripts/itop-docker/skeleton.sh    /root/scripts/itop-docker/skeleton.sh
 
-RUN chmod +x /root/scripts/itop-utilities/startup.sh
+RUN chmod +x /root/scripts/itop-utilities/startup.sh \
          /root/scripts/itop-docker/csv_import.php \
          /root/scripts/itop-docker/ldif-to-csv.sh \
          /root/scripts/itop-docker/AddDateCsv.sh \
