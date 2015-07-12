@@ -5,6 +5,7 @@ DUMP_FILE=/var/tmp/inventory/inventory-sqldump.sql
 # PreWork
 PreWork( )
 {
+  echo "Iniciando $0"
   /etc/init.d/mysqld restart 
   /etc/init.d/mysqld status
 }
