@@ -1,5 +1,5 @@
 CREDENTIALS_FILE=/root/scripts/itop-utilities/.credentials
-DUMP_FILE=/var/tmp/inventory/inventory-sqldump.sql
+DUMP_FILE=/var/tmp/inventory-sqldump.sql
 
 
 # PreWork
@@ -55,8 +55,9 @@ LoadPreviousExecution
 # Work
 #/root/scripts/openstack-utilities/OpenStack2Mysql.sh  /root/scripts/openstack-utilities/profiles/${profile}
 
+cd /root/scripts/itop-docker; ./FromItop2LDAP.sh
+
 # Dump results
-/root/scripts/itop-docker/FromItop2LDAP.sh
-mysqldump inventory > /var/tmp/inventory/inventory-sqldump.sql
+mysqldump inventory > $DUMP_FILE
 
 

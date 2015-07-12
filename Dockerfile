@@ -23,13 +23,14 @@ CMD ["/bin/bash", "/root/scripts/itop-docker/startup.sh"]
 RUN chmod +x /root/scripts/itop-docker/csv_import.php \
          /root/scripts/itop-docker/ldif-to-csv.sh \
          /root/scripts/itop-docker/AddDateCsv.sh \
-         /root/scripts/itop-docker/skeleton.sh
+         /root/scripts/itop-docker/skeleton.sh 
 RUN touch /root/scripts/itop-utilities/.credentials && \
     ln -s /root/scripts/itop-utilities/.credentials /root/scripts/itop-docker/.credentials
 
 EXPOSE 3306
 VOLUME ["/var/tmp/" ]
 
+
 # Start scripts
-#ADD ./startup.sh /root/scripts/itop-utilities/startup.sh
-#RUN chmod +x /root/scripts/openstack-utilities/OpenStack2Mysql.sh /root/scripts/openstack-utilities/startup.sh
+ADD ./startup.sh /root/scripts/itop-utilities/startup.sh
+
