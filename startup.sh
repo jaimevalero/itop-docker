@@ -6,7 +6,7 @@ DUMP_FILE=/var/tmp/inventory-sqldump.sql
 EnsureDBisRunning( )
 {
 RESULT=1
-while [ result -eq 1 ]
+while [ $RESULT -eq 1 ]
 do
   /etc/init.d/mysqld stop
   rm -f /var/lock/subsys/mysqld 1>/dev/null 2>/dev/null
