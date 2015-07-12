@@ -10,7 +10,7 @@ RUN /etc/init.d/mysqld start
 # Get git repos
 RUN mkdir -p /root/scripts/itop-docker
 RUN yum install -y git
-RUN cd /root/scripts && \ git clone "https://github.com/jaimevalero78/itop-utilities"
+RUN cd /root/scripts &&  git clone "https://github.com/jaimevalero78/itop-utilities"
 
 # Permissions and entrypoint
 CMD ["/bin/bash", "/root/scripts/itop-docker/startup.sh"]
