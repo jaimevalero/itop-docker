@@ -1,9 +1,9 @@
 # Test
-FROM appcontainers/centos66
+FROM       appcontainers/centos66
 MAINTAINER Jaime Valero <jaimevalero78@yahoo.es>
-LABEL Description="Synchronize user data from LDAP to Itop" Version="0.1.0"
+LABEL      Description="Synchronize user data from LDAP to Itop" Version="0.2.0"
 
-# Get git
+# Get git repos
 RUN mkdir /root/scripts
 RUN yum install -y git 
 RUN cd /root/scripts && \  
