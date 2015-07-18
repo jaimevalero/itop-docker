@@ -73,7 +73,7 @@ LoadPreviousExecution( )
 # Main
 PreWork
 
-cd /root/scripts/itop-docker; ./FromItop2LDAP.sh
+cd /root/scripts/itop-docker; ./FromLDAP2Itop
 
 # Dump results
 mysqldump inventory > $DUMP_FILE

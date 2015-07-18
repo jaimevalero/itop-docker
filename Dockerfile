@@ -23,14 +23,14 @@ ADD ./root/scripts/itop-docker/csv_import.php   /root/scripts/itop-docker/csv_im
 ADD ./root/scripts/itop-docker/ldif-to-csv.sh   /root/scripts/itop-docker/ldif-to-csv.sh 
 ADD ./root/scripts/itop-docker/AddDateCsv.sh    /root/scripts/itop-docker/AddDateCsv.sh
 ADD ./root/scripts/itop-docker/skeleton.sh      /root/scripts/itop-docker/skeleton.sh
-ADD ./root/scripts/itop-docker/FromItop2LDAP.sh /root/scripts/itop-docker/FromItop2LDAP.sh
+ADD ./root/scripts/itop-docker/FromLDAP2Itop.sh /root/scripts/itop-docker/FromLDAP2Itop.sh
 
 RUN chmod +x /root/scripts/itop-docker/startup.sh \
          /root/scripts/itop-docker/csv_import.php \
          /root/scripts/itop-docker/ldif-to-csv.sh \
          /root/scripts/itop-docker/AddDateCsv.sh \
          /root/scripts/itop-docker/skeleton.sh \
-         /root/scripts/itop-docker/FromItop2LDAP.sh
+         /root/scripts/itop-docker/FromLDAP2Itop.sh
 RUN find root/scripts/itop-docker/ -name "*.sh"
 RUN touch /root/scripts/itop-utilities/.credentials 
 RUN ln -s /root/scripts/itop-utilities/.credentials /root/scripts/itop-docker/.credentials
