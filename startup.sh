@@ -3,6 +3,10 @@ DUMP_FILE=/var/tmp/inventory-sqldump.sql
 
 source /root/scripts/itop-docker/skeleton.sh
 
+CreateDBUser
+{
+mysql -e "grant all on `database`.* to 'cmdb'@'localhost' identified by '6yhnmju7';"
+}
 EnsureDBisRunning( )
 {
 RESULT=1
@@ -18,6 +22,7 @@ do
 done
 MostrarLog "DB is running"
 
+CreateDBUser
 
 }
 
@@ -35,6 +40,11 @@ GenerateItopConnectInfo( )
 {
 # Avoid to upload produciton info to combodo's demo site
 [ ` cat $CREDENTIALS_FILE | grep demo | wc -l ` -eq 1 ] > $CREDENTIALS_FILE
+# Mysql 
+echo "export MYSQL_USER=cmdb"          >> $CREDENTIALS_FILE
+echo "export MYSQL_PASS=6yhnmju7"      >> $CREDENTIALS_FILE
+echo "export MYSQL_HOSTNAME=localhost" >> $CREDENTIALS_FILE
+
 # itop server credentials
 
 [ ! -z ${itop_user}      ] && echo "export MY_USER=${itop_user}"                     >> $CREDENTIALS_FILE
