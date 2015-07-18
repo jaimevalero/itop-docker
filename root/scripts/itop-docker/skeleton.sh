@@ -73,8 +73,7 @@ CheckFile( )
 
 Fin( )
 {
-MostrarLog End 
-
+  MostrarLog End 
 }
 PreLoadDB( )
 {
@@ -199,6 +198,14 @@ do
   /root/scripts/itop_utilities/synch.sh $TEMP_SYNCH_FILE
   rm -f $TEMP_SYNCH_FILE
 done
+}
+PreSynch( )
+{
+notin=0
+}
+PostSynch( )
+{
+notin=0
 }
 
 Synch( )
