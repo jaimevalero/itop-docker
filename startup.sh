@@ -3,7 +3,7 @@ DUMP_FILE=/var/tmp/inventory-sqldump.sql
 
 source /root/scripts/itop-docker/skeleton.sh
 
-CreateDBUser
+CreateDBUser( )
 {
 mysql -e "grant all on `database`.* to 'cmdb'@'localhost' identified by '6yhnmju7';"
 }
