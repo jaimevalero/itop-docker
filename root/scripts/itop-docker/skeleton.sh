@@ -21,8 +21,12 @@ MostrarLog( )
 {
         echo [`basename $0`] [`date +'%Y_%m_%d %H:%M:%S'`] [$$] [${FUNCNAME[1]}] $@  | /usr/bin/tee -a $FICHERO_TRAZA
 }
+GetCredentials( )
+{
+  source .credentials
+}
 
-# Check if a tabla has results
+# Check if a table has results
 CheckTable( )
 {
   MostrarLog $1
@@ -77,7 +81,7 @@ Fin( )
 }
 PreLoadDB( )
 {
-notin=0
+  notin=0
 }
 
 LoadingDB( )
@@ -153,7 +157,7 @@ MostrarLog CSV list :${CSV_LIST[*]}
 
 cd $WORKING_PATH 2>/dev/null
 
-
+GetCredentials
 
 # Reset Variables, set working path, initialize logs...
 DeleteTempFiles
@@ -207,9 +211,16 @@ PostSynch( )
 {
 notin=0
 }
+ChoseFilestoSynch( )
+{
 
+notin=0
+
+}
 Synch( )
 {
+    ChoseFilestoSynch
+
     PreSynch
 
     Synchronizing

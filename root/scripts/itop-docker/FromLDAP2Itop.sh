@@ -12,9 +12,10 @@ WORKING_PATH=/root/scripts/itop-docker/
 # Load skeleton
 source /root/scripts/itop-docker/skeleton.sh
 
-PreGetData( )
+ChoseFilestoSynch( )
 {
-  source .credentials
+  # if user has say so, we create organization
+ [ $MY_ITOP_CREATE_ORGANIZATION -eq 1 ] && [ -z ${MY_ITOP_ORGANIZATION} ] && SYNCH_FILES="/root/scripts/itop-docker/config/Organization-Person.synch $SYNCH_FILES"
 }
 
 DeleteTempFiles( )
