@@ -17,5 +17,5 @@ inventory.users;Location;Name,Owner organization->Name
 #
 ###########################################################
 distinct(l)|Name
-'desarrollo'|Owner organization->Name
+'MY_ITOP_ORGANIZATION'|Owner organization->Name
 'Active'|Status

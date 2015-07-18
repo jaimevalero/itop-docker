@@ -4,6 +4,7 @@
 WORKING_PATH=${MY_WORKING_PATH-.}
 FICHERO_TRAZA=/var/log/`basename $0`.log
 OUTPUT_DIRECTORY=/var/tmp
+SYNCH_FILES=
 
 # TODO
 # Add index
@@ -168,6 +169,47 @@ PostWork( )
   DeleteTempFiles
 }
 
+ReplaceVariables( )
+{
+  # For each env vble called MY_ITOP_XXX: replace it for its value on the synch file
+  for my_exp in ` env | grep MY_ITOP `
+  do
+    MY_KEY=` echo $my_exp | cut -d\= -f1 `         
+    MY_VALUE=` echo $my_exp | cut -d\= -f2-100 `
+    sed -i "s/$MY_KEY/$MY_VALUE/g" $TEMP_SYNCH_FILE
+  done
+
+}
+
+Synchronizing( )
+{
+  # For each synch file :copy it to a tmp, 
+  # replace with all the related variables 
+  # and then call to synch
+for i in `echo $SYNCH_FILES`
+do
+  TEMP_SYNCH_FILE=/tmp/`basename $i`-$$-config
+  cp -f $i $TEMP_SYNCH_FILE
+  # For each env vble called MY_ITOP_XXX: replace it for its value on the synch file
+  ReplaceVariables
+
+  cat $TEMP_SYNCH_FILE
+  MostrarLog synching $i
+  # Call to synch
+  /root/scripts/itop_utilities/synch.sh $TEMP_SYNCH_FILE
+  rm -f $TEMP_SYNCH_FILE
+done
+}
+
+Synch( )
+{
+    PreSynch
+
+    Synchronizing
+
+    PostSynch
+
+}
 
 # Get Data
 GetData( )
@@ -188,6 +230,8 @@ Main( )
     GetData
 
     LoadDB
+
+    Synch
 
     Fin
 
