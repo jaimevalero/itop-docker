@@ -46,8 +46,8 @@ echo "export MYSQL_PASS=6yhnmju7"      >> $CREDENTIALS_FILE
 echo "export MYSQL_HOSTNAME=localhost" >> $CREDENTIALS_FILE
 
 # itop server credentials
-[ ! -z ${itop_user}      ] && echo "export MY_USER=${itop_user}"                     >> $CREDENTIALS_FILE
-[ ! -z ${itop_pass}      ] && echo "export MY_PASS=${itop_pass}"                     >> $CREDENTIALS_FILE 
+[ ! -z ${itop_user}      ] && echo "export ITOP_USER=${itop_user}"                     >> $CREDENTIALS_FILE
+[ ! -z ${itop_pass}      ] && echo "export ITOP_PASS=${itop_pass}"                     >> $CREDENTIALS_FILE 
 [ ! -z ${itop_server}    ] && echo "export ITOP_SERVER=${itop_server}"               >> $CREDENTIALS_FILE
 [ ! -z ${itop_directory} ] && echo "export INSTALLATION_DIRECTORY=${itop_directory}" >> $CREDENTIALS_FILE
 [ ! -z ${https}          ] && echo "export HTTPS=Y" >> $CREDENTIALS_FILE || echo "HTTPS=N"  >> $CREDENTIALS_FILE
