@@ -77,7 +77,7 @@ else
 	DATABASE=$1
 fi
 
-mysql -e "Create DATABASE if not exists $DATABASE_accumulated"
+mysql -e "Create DATABASE if not exists ${DATABASE}_accumulated"
 
 for i in ` mysql $DATABASE -e "show tables"  | grep -v Tables_in_ | grep -v backup_summary `  
 	do
