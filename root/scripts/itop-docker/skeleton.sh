@@ -108,7 +108,8 @@ LoadDB( )
     LoadingDB
 
     PostCargaDB
-
+   
+    AccumulateDB 
 }
 
 PreGetData( )
@@ -173,7 +174,6 @@ AccumulateDB( )
 }
 PostWork( )
 {
-  AccumulateDB
   DeleteTempFiles
 }
 
