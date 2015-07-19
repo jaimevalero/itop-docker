@@ -26,6 +26,11 @@ CreateDBUser
 
 }
 
+GetCorrectTime( )
+{
+   sudo service ntp stop ; sudo ntpdate -s time.nist.gov ; sudo service ntp start ; date
+}
+
 # Start Mysql, recover last state, generate credentials file...
 PreWork( )
 {
@@ -33,6 +38,7 @@ PreWork( )
   GenerateItopConnectInfo
   LoadPreviousExecution
   EnsureDBisRunning
+  GetCorrectTime
 }
 
 
@@ -86,6 +92,7 @@ cd /root/scripts/itop-docker; ./FromLDAP2Itop.sh
 
 # Dump results
 mysqldump inventory > $DUMP_FILE
+mysql inventory_accumulated "SELECT * from users"
 ls -altr  $DUMP_FILE
 
 MostrarLog "End $0"
