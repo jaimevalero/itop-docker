@@ -5,7 +5,7 @@
 #
 ##########################################################
 
-FICHERO_TRAZA=/var/log/inventario/`basename $0`.log
+FICHERO_TRAZA=/var/log/`basename $0`.log
 #######################################################
 #
 # Funcion MostrarLog
