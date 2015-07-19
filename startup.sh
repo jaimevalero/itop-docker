@@ -92,7 +92,7 @@ cd /root/scripts/itop-docker; ./FromLDAP2Itop.sh
 
 # Dump results
 mysqldump inventory > $DUMP_FILE
-mysql inventory_accumulated "SELECT * from users"
+mysql inventory_accumulated -e "SELECT * from users"
 ls -altr  $DUMP_FILE
 
 MostrarLog "End $0"
