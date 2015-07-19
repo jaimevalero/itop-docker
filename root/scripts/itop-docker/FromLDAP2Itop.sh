@@ -1,6 +1,6 @@
 # Array of csv files
 LDAP_FIELDS="sn givenName employeeNumber l mail telephoneNumber mobile" 
-DB=inventory
+
 # Array of csv files
 export CSV_LIST=(users)
 # Array of csv headers

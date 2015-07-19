@@ -1,6 +1,6 @@
 # Este skeleton deberia ser el nuevo modelo a invocar para todos los script que interactuen con csv
 #skeleton
-
+DB=inventory
 WORKING_PATH=${MY_WORKING_PATH-.}
 FICHERO_TRAZA=/var/log/`basename $0`.log
 OUTPUT_DIRECTORY=/var/tmp
@@ -167,8 +167,13 @@ GenerateCsvHeader
 
 }
 
+AccumulateDB( )
+{
+ ./AccumulateDB.sh $DB
+}
 PostWork( )
 {
+  AccumulateDB
   DeleteTempFiles
 }
 
