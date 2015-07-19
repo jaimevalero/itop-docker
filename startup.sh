@@ -80,6 +80,8 @@ LoadPreviousExecution( )
   then
     MostrarLog "Previous execution detected. Loading"
     mysql < $DUMP_FILE 
+  else
+    MostrarLog "We have not found any previous dump."
   fi 
 }
 
