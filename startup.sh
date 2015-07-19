@@ -5,7 +5,7 @@ source /root/scripts/itop-docker/skeleton.sh
 
 CreateDBUser( )
 {
-mysql -e "grant all on `*`.* to 'cmdb'@'localhost' identified by '6yhnmju7';"
+mysql -e "grant all on *.* to 'cmdb'@'localhost' identified by '6yhnmju7';"
 }
 EnsureDBisRunning( )
 {
