@@ -5,7 +5,7 @@ source /root/scripts/itop-docker/skeleton.sh
 
 CreateDBUser( )
 {
-mysql -e "grant all on `database`.* to 'cmdb'@'localhost' identified by '6yhnmju7';"
+mysql -e "grant all on `*`.* to 'cmdb'@'localhost' identified by '6yhnmju7';"
 }
 EnsureDBisRunning( )
 {
@@ -61,11 +61,11 @@ echo "export MYSQL_HOSTNAME=localhost" >> $CREDENTIALS_FILE
 
 # misc option
 [ ! -z ${organization}   ] && echo "export MY_ITOP_ORGANIZATION=\"${organization}\"" >> $CREDENTIALS_FILE
-[ `echo ${create_organization} | grep -i y | wc -l `-eq 1 ] CREATE_FLAG=1 || CREATE_FLAG=0 ;  
+[ `echo ${create_organization} | grep -i y | wc -l ` -eq 1 ] CREATE_FLAG=1 || CREATE_FLAG=0 ;  
 echo "export MY_ITOP_CREATE_ORGANIZATION=$CREATE_FLAG"  >> $CREDENTIALS_FILE 
 
 MostrarLog Connection Info: 
-cat  $CREDENTIALS_FILE | sed -e 's/MY_ITOP_//g' 
+cat  $CREDENTIALS_FILE #| sed -e 's/MY_ITOP_//g' 
 }
 
 LoadPreviousExecution( )
