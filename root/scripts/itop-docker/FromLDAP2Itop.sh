@@ -1,7 +1,6 @@
 # Array of csv files
 LDAP_FIELDS="sn givenName employeeNumber l mail telephoneNumber mobile" 
 DB=inventory
-SYNCH_FILES="/root/scripts/itop-docker/config/Location-Person.synch /root/scripts/itop-docker/config/Person.synch"
 # Array of csv files
 export CSV_LIST=(users)
 # Array of csv headers
@@ -12,10 +11,14 @@ WORKING_PATH=/root/scripts/itop-docker/
 # Load skeleton
 source /root/scripts/itop-docker/skeleton.sh
 
+SYNCH_FILES="/root/scripts/itop-docker/config/Location-Person.synch /root/scripts/itop-docker/config/Person.synch"
+
 ChoseFilestoSynch( )
 {
   # if user has say so, we create organization
  [ $MY_ITOP_CREATE_ORGANIZATION -eq 1 ] && [ -z ${MY_ITOP_ORGANIZATION} ] && SYNCH_FILES="/root/scripts/itop-docker/config/Organization-Person.synch $SYNCH_FILES"
+ MostrarLog Synchronize files: $SYNCH_FILES
+
 }
 
 DeleteTempFiles( )

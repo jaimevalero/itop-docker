@@ -189,6 +189,8 @@ Synchronizing( )
   # For each synch file :copy it to a tmp, 
   # replace with all the related variables 
   # and then call to synch
+MostrarLog Synchronizing $SYNCH_FILES
+
 for i in `echo $SYNCH_FILES`
 do
   TEMP_SYNCH_FILE=/tmp/`basename $i`-$$-config
@@ -199,7 +201,7 @@ do
   cat $TEMP_SYNCH_FILE
   MostrarLog synching $i
   # Call to synch
-  /root/scripts/itop_utilities/synch.sh $TEMP_SYNCH_FILE
+  /root/scripts/itop-utilities/synch.sh $TEMP_SYNCH_FILE
   rm -f $TEMP_SYNCH_FILE
 done
 }
