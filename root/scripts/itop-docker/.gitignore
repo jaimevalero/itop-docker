@@ -1,7 +1,6 @@
-
+nohup.out
 .credentials
 *.csv
+*.ldif
 salida*
 users*
-*ldif
-
