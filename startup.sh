@@ -45,7 +45,7 @@ PreWork( )
 GenerateItopConnectInfo( )
 {
 # Avoid to upload produciton info to combodo's demo site
-[ ` cat $CREDENTIALS_FILE | grep demo | wc -l ` -eq 1 ] > $CREDENTIALS_FILE
+# [ ` cat $CREDENTIALS_FILE | grep demo | wc -l ` -eq 1 ] > $CREDENTIALS_FILE
 # Mysql 
 echo "export MYSQL_USER=cmdb"          >> $CREDENTIALS_FILE
 echo "export MYSQL_PASS=6yhnmju7"      >> $CREDENTIALS_FILE
