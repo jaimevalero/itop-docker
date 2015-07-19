@@ -50,11 +50,6 @@ echo "export MYSQL_HOSTNAME=localhost" >> $CREDENTIALS_FILE
 [ ! -z ${itop_pass}      ] && echo "export MY_PASS=${itop_pass}"                     >> $CREDENTIALS_FILE 
 [ ! -z ${itop_server}    ] && echo "export ITOP_SERVER=${itop_server}"               >> $CREDENTIALS_FILE
 [ ! -z ${itop_directory} ] && echo "export INSTALLATION_DIRECTORY=${itop_directory}" >> $CREDENTIALS_FILE
-
-[ ! -z ${itop-user}      ] && echo "export MY_USER=${itop-user}"                     >> $CREDENTIALS_FILE
-[ ! -z ${itop-pass}      ] && echo "export MY_PASS=${itop-pass}"                     >> $CREDENTIALS_FILE
-[ ! -z ${itop-server}    ] && echo "export ITOP_SERVER=${itop-server}"               >> $CREDENTIALS_FILE
-[ ! -z ${itop-directory} ] && echo "export INSTALLATION_DIRECTORY=${itop-directory}" >> $CREDENTIALS_FILE
 [ ! -z ${https}          ] && echo "export HTTPS=Y" >> $CREDENTIALS_FILE || echo "HTTPS=N"  >> $CREDENTIALS_FILE
 
 # ldap options
@@ -62,13 +57,6 @@ echo "export MYSQL_HOSTNAME=localhost" >> $CREDENTIALS_FILE
 [ ! -z ${ldap_base}      ] && echo "export LDAP_BASE=\"${ldap_base}\""               >> $CREDENTIALS_FILE
 [ ! -z ${ldap_bind_dn}   ] && echo "export LDAP_BIND_DN=\"${ldap_bind_dn}\""         >> $CREDENTIALS_FILE
 [ ! -z ${ldap_pass}      ] && echo "export LDAP_PASSWORD=\"${ldap_pass}\""           >> $CREDENTIALS_FILE
-
-[ ! -z ${ldap-server}    ] && echo "export LDAP_SERVER=\"${ldap-server}\""           >> $CREDENTIALS_FILE
-[ ! -z ${ldap-base}      ] && echo "export LDAP_BASE=\"${ldap-base}\""               >> $CREDENTIALS_FILE
-[ ! -z ${ldap-bind-dn}   ] && echo "export LDAP_BIND_DN=\"${ldap-bind-dn}\""         >> $CREDENTIALS_FILE
-[ ! -z ${ldap-pass}      ] && echo "export LDAP_PASSWORD=\"${ldap-pass}\""           >> $CREDENTIALS_FILE
-
-
 
 # misc option
 [ ! -z ${organization}   ] && echo "export MY_ITOP_ORGANIZATION=\"${organization}\"" >> $CREDENTIALS_FILE
