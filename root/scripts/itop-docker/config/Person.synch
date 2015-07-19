@@ -9,7 +9,7 @@
 #
 # E.g: inventario.user;Person;Name
 ###########################################################
-inventory.users  where  email != '' order by l ;Person; Last Name,First Name,Employee number
+inventory.users  where  mail != '' order by l ;Person; Last Name,First Name,Employee number
 ###########################################################
 #
 # After, that a file for each old 'mysql' column mapped to new 'itop' column
