@@ -79,10 +79,8 @@ LoadPreviousExecution( )
   if [ -f $DUMP_FILE ]
   then
     MostrarLog "Previous execution detected. Loading"
-    mysql inventory < $DUMP_FILE 
+    mysql < $DUMP_FILE 
   fi 
-
-
 }
 
 # Main
@@ -91,7 +89,7 @@ PreWork
 cd /root/scripts/itop-docker; ./FromLDAP2Itop.sh
 
 # Dump results
-mysqldump inventory > $DUMP_FILE
+mysqldump --all-databases > $DUMP_FILE
 mysql inventory_accumulated -e "SELECT * from users"
 ls -altr  $DUMP_FILE
 
