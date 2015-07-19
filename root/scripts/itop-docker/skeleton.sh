@@ -198,7 +198,6 @@ do
   # For each env vble called MY_ITOP_XXX: replace it for its value on the synch file
   ReplaceVariables
 
-  cat $TEMP_SYNCH_FILE
   MostrarLog synching $i
   # Call to synch
   /root/scripts/itop-utilities/synch.sh $TEMP_SYNCH_FILE
