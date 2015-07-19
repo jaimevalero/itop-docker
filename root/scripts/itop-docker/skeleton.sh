@@ -202,7 +202,7 @@ do
   MostrarLog synching $i
   # Call to synch
   /root/scripts/itop-utilities/synch.sh $TEMP_SYNCH_FILE
-  rm -f $TEMP_SYNCH_FILE
+  #rm -f $TEMP_SYNCH_FILE
 done
 }
 PreSynch( )
